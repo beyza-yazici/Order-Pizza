@@ -5,7 +5,7 @@ function HomePage({onButtonClick}) {
   return (
     <>
     <div className="home-h1">
-    <img src="../../images/iteration-1-images/logo.svg" alt="" />
+    <img src="../../images/iteration-1-images/logo.svg"/>
     </div>
     <div className='home-h2'> 
     <h2>KOD ACIKTIRIR</h2> 

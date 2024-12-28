@@ -8,7 +8,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(false);
 
   return (
-    <div>
+    <div className={currentPage ? 'order-pizza-page' : ''}>
       {!currentPage ? (
         <HomePage onButtonClick={() => setCurrentPage(true)} />
       ) : (
