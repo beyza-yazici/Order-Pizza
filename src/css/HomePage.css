@@ -6,20 +6,6 @@ body {
     height: 100vh;
     width: 100%;
 }
-
-
-.home-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 50px;
-    color: #FAF7F2;
-    font-size: 14px;
-  }
-
-  .home-h1 h1{
-    font-family: 'Barlow', sans-serif;
-  }
-  
  
   .home-h2 {
     display: flex;

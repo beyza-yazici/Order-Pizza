@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { pizzaData } from '../sahteVeri';
 import { Form, FormGroup, Label } from 'reactstrap';
+import "../css/OrderPizza.css"
+import "../../images/iteration-1-images/logo.svg"
 
-function OrderPizza() {
+function OrderPizza({goBack}) {
   const [order, setOrder] = useState({ selectedExtras: [] });
   const [selectedDough, setSelectedDough] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -90,9 +92,9 @@ function OrderPizza() {
   return (
     <>
       <header>
-        <h1>Teknolojik Yemekler</h1>
+        <img src="../../images/iteration-1-images/logo.svg" alt="" />
         <div className="order-header">
-          <button>Anasayfa</button>
+          <button onClick={goBack}>Anasayfa</button>
           <button>Seçenekler</button>
           <button>Sipariş Oluştur</button>
         </div>

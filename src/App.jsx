@@ -5,17 +5,17 @@ import OrderPizza from './components/OrderPizza';
 
 function App() {
 
-  const [currentPage, setCurrentPage] = useState("HomePage");
+  const [currentPage, setCurrentPage] = useState(false);
 
-  const changePage = (page) => {
-    setCurrentPage(page);
-  };
-  
   return (
-    <>
-    <OrderPizza />
-    </>
-  )
+    <div>
+      {!currentPage ? (
+        <HomePage onButtonClick={() => setCurrentPage(true)} />
+      ) : (
+        <OrderPizza goBack={() => setCurrentPage(false)} />
+      )}
+    </div>
+  );
 }
 
 export default App
