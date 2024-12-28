@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import HomePage from './components/HomePage'
+import OrderPizza from './components/OrderPizza';
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [currentPage, setCurrentPage] = useState("HomePage");
+
+  const changePage = (page) => {
+    setCurrentPage(page);
+  };
+  
   return (
     <>
-    <HomePage />
+    <OrderPizza />
     </>
   )
 }
