@@ -26,10 +26,6 @@ header {
     font-weight: bold;
 }
 
-.order-header button:not(:last-child)::after {
-    content: "-";
-    color: #FAF7F2;
-}
 
 header img {
     display: flex;
@@ -37,10 +33,64 @@ header img {
     align-self: center;
 }
 
-
-
 section {
     padding: 0px 32vw;
+}
+
+section h3{
+    font-family: "Barlow", serif;
+    margin-top: 40px;
+    color: #292929;
+}
+
+.pizza-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pizza-details p {
+    font-size: 24px;
+    font-weight: 620;
+    color: #292929;
+    margin-top: 8px;
+}
+
+.pizza-info p:last-child {
+    color: #5F5F5F;
+    line-height: 25px;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 3vw;
+    color: #5F5F5F;
+}
+
+.rating p {
+    font-size: 16px;
+    font-weight: 300;
+    color: #5F5F5F;
+}
+
+Form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 50px;
+}
+
+.size-header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 300px;
 }
 
 .order-pizza-page {

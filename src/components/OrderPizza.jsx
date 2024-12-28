@@ -5,7 +5,7 @@ import "../css/OrderPizza.css"
 import "../../images/iteration-1-images/logo.svg"
 import axios from 'axios';
 
-function OrderPizza({goBack}) {
+function OrderPizza({goBack, onSuccess}) {
   const [order, setOrder] = useState({ selectedExtras: [] });
   const [selectedDough, setSelectedDough] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -60,6 +60,7 @@ function OrderPizza({goBack}) {
         setSelectedDough('');
         setCount(1);
         setAd('');
+        onSuccess();
       })
       .catch(error => {
         console.error('API isteği sırasında bir hata oluştu:', error);
@@ -117,7 +118,9 @@ function OrderPizza({goBack}) {
         <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
         <div className="order-header">
           <button onClick={goBack}>Anasayfa</button>
+          <p>-</p>
           <button>Seçenekler</button>
+          <p>-</p>
           <button>Sipariş Oluştur</button>
         </div>
       </header>
