@@ -6,6 +6,7 @@ function OrderPizza() {
   const [order, setOrder] = useState({ selectedExtras: [] });
   const [selectedDough, setSelectedDough] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [count, setCount] = useState(1);
 
   const { name, price, description, rating, reviewCount } = pizzaData[0];
 
@@ -26,30 +27,64 @@ function OrderPizza() {
     "Fesleğen"
   ];
 
-  // Boyut ve hamur seçimi için handleChange fonksiyonu
   const handleChange = (event) => {
     setSelectedSize(event.target.value);
     setSelectedDough(event.target.value);
   };
 
-  // Ek malzeme seçiminde kullanılan fonksiyon
   const handleCheckboxChange = (event) => {
     const value = event.target.value;
     setOrder((prevOrder) => {
       const selectedExtras = prevOrder.selectedExtras;
       let updatedExtras;
 
-      // Eğer ek malzeme zaten seçildiyse, onu listeden çıkar
       if (selectedExtras.includes(value)) {
         updatedExtras = selectedExtras.filter((extra) => extra !== value);
       } else {
-        // Eğer ek malzeme seçilmediyse, listeye ekle
-        updatedExtras = [...selectedExtras, value];
+        if (selectedExtras.length < 10) {
+          updatedExtras = [...selectedExtras, value];
+        } else {
+          updatedExtras = selectedExtras;
+        }
       }
 
-      // Seçilen ek malzemeler güncelleniyor
       return { ...prevOrder, selectedExtras: updatedExtras };
     });
+  };
+
+  const increment = (event) => {
+    event.preventDefault();
+    setCount(count + 1);
+  };
+
+  const decrement = (event) => {
+    event.preventDefault();
+    if (count > 0) {
+      setCount(count - 1);
+    }
+  };
+
+  
+  const getSizePrice = () => {
+    if (selectedSize === 'small') return 30;
+    if (selectedSize === 'medium') return 50;
+    if (selectedSize === 'large') return 70;
+    return 0;
+  };
+
+  const getExtrasPrice = () => {
+    return order.selectedExtras.length * 5;
+  };
+
+  const total = (price + getSizePrice() + getExtrasPrice()) * count;
+
+  const isFormValid = () => {
+    const isSizeSelected = (selectedSize !== '');
+    const isDoughSelected = (selectedDough !== '');
+    
+    const isExtrasValid = (order.selectedExtras.length) <= 10;
+
+    const isCountValid = count > 0;
   };
 
   return (
@@ -102,11 +137,29 @@ function OrderPizza() {
                     id={extra}
                     value={extra}
                     onChange={handleCheckboxChange}
-                    checked={order.selectedExtras.includes(extra)} // Seçili mi kontrolü
+                    checked={order.selectedExtras.includes(extra)}
                   />
                   <label htmlFor={extra}>{extra}</label>
                 </div>
               ))}
+            </div>
+            <h3>Sipariş Notu</h3>
+            <label htmlFor='note'>
+              <textarea id="note" name='note' rows="4" cols="50" placeholder='Siparişine eklemek istediğin bir not var mı?' />
+            </label>
+            <hr />
+            <div className='count-order'>
+              <div className="counter">
+                <button onClick={decrement} className="decrement">-</button>
+                <span className="count">{count}</span>
+                <button onClick={increment} className="increment">+</button>
+                <fieldset>
+                  <h3>Sipariş Toplamı</h3>
+                  <p>Seçimler: {getExtrasPrice()} ₺</p>
+                  <p>Toplam: {total} ₺</p>
+                </fieldset>
+                <button type='submit' disabled={!isFormValid}>SİPARİŞ VER</button>
+              </div>
             </div>
           </FormGroup>
         </Form>
