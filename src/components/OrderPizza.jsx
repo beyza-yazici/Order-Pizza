@@ -183,8 +183,9 @@ function OrderPizza({goBack, onSuccess}) {
             </div>
 
             <div>
-              <label htmlFor="ad">İsim:</label>
+              <label htmlFor="ad" >İsim:</label>
               <input
+                data-cy="ad"
                 type="text"
                 id="ad"
                 name="ad"

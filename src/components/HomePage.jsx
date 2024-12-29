@@ -12,7 +12,7 @@ function HomePage({onButtonClick}) {
     <h2>PİZZA, DOYURUR</h2>
     </div>
     <div className='home-button'>
-      <button onClick={onButtonClick}> ACIKTIM </button>
+      <button data-cy="home-button" onClick={onButtonClick}> ACIKTIM </button>
     </div>
     </>
   )
