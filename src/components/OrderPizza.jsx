@@ -118,9 +118,7 @@ function OrderPizza({goBack, onSuccess}) {
         <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
         <div className="order-header">
           <button onClick={goBack}>Anasayfa</button>
-          <p>-</p>
           <button>Seçenekler</button>
-          <p>-</p>
           <button>Sipariş Oluştur</button>
         </div>
       </header>
