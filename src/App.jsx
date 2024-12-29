@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import HomePage from './components/HomePage'
 import OrderPizza from './components/OrderPizza';
+import Success from './components/Success';
 
 function App() {
 
@@ -13,15 +14,11 @@ function App() {
   };
 
   return (
-    
     <div className={currentPage ? 'order-pizza-page' : ''}>
       {!currentPage ? (
         <HomePage onButtonClick={() => setCurrentPage(true)} />
       ) : isOrderSuccess ? (
-        <div>
-          <h2>Siparişiniz başarıyla alındı!</h2>
-          <p>Teşekkür ederiz. Siparişiniz işleniyor.</p>
-        </div>
+        <Success goBack={() => setCurrentPage(false)} />
       ) : (
         <OrderPizza goBack={() => setCurrentPage(false)} onSuccess={handleOrderSuccess} />
       )}

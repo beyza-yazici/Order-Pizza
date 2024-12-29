@@ -138,7 +138,10 @@ function OrderPizza({goBack, onSuccess}) {
 
         <Form onSubmit={handleSubmit}>
           <FormGroup className="pizza-sizes">
-            <Label className="size-header">Boyut Seç</Label>
+          <div className="selection-container">
+          <div className="size-selection">
+            <Label className="size-header">
+              <h3>Boyut Seç</h3></Label>
             <div className="pizza-size-selection">
               <input type="radio" id="small" name="size" value="small" onChange={handleSizeChange} />
               <label htmlFor="small">Küçük</label>
@@ -147,14 +150,20 @@ function OrderPizza({goBack, onSuccess}) {
               <input type="radio" id="large" name="size" value="large" onChange={handleSizeChange} />
               <label htmlFor="large">Büyük</label>
             </div>
+            </div>
 
-            <Label className="dough-sizes">Hamur Seç</Label>
+            <div className="dough-selection">
+            <Label className="dough-sizes">
+              <h3>Hamur Seç</h3></Label>
             <select value={selectedDough} onChange={handleDoughChange}>
               <option value="">Hamur Kalınlığı</option>
               <option value="İnce">İnce</option>
               <option value="Normal">Normal</option>
               <option value="Kalın">Kalın</option>
             </select>
+            </div>
+            </div>
+            
 
             <div className="extras">
               <h3>Ek Mazemeler</h3>
@@ -200,10 +209,14 @@ function OrderPizza({goBack, onSuccess}) {
                 <button onClick={decrement} className="decrement">-</button>
                 <span className="count">{count}</span>
                 <button onClick={increment} className="increment">+</button>
-                <fieldset>
+                <fieldset className='order-details'>
                   <h3>Sipariş Toplamı</h3>
-                  <p>Seçimler: {getExtrasPrice()} ₺</p>
-                  <p>Toplam: {total} ₺</p>
+                  <div className="extra-price">
+                    <p>Seçimler:</p> <p>{getExtrasPrice()} ₺</p>
+                  </div>
+                  <div className="total-price">
+                  <p>Toplam:</p><p> {total} ₺</p>
+                  </div>
                 </fieldset>
                 <button type="submit" disabled={!isFormValid()}>SİPARİŞ VER</button>
               </div>

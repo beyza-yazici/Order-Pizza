@@ -46,6 +46,7 @@ section h3{
     font-family: "Barlow", serif;
     margin-top: 40px;
     color: #292929;
+    font-size: 20px;
 }
 
 .pizza-details {
@@ -91,13 +92,182 @@ Form {
     gap: 50px;
 }
 
-.size-header {
+.pizza-size-selection{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    color: #5F5F5F;
+}
+
+.selection-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.size-selection,
+.dough-selection{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.size-selection Label,
+.dough-selection Label {
+    margin-bottom: 10px;
+}
+
+.pizza-size-selection input {
+    margin-bottom: 5px;
+  }
+
+  select {
+    margin-top: 5px;
+  }
+
+  .dough-size {
     display: flex;
     flex-direction: column;
     gap: 20px;
     max-width: 300px;
 }
 
+.extras {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.extras p {
+    color: #333;
+    position: relative;
+    bottom: 10px;
+}
+
+.extras-selection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    width: 11vw;
+    margin-bottom: 30px;
+}
+
+.extra-checkbox {
+    margin-right: 10px;
+}
+
+.note{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.count-order {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 80px;
+}
+
+.counter{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.counter span{
+    border: 1px solid #5f5f5f3f;
+    height: 48px;
+    width: 41px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter button{
+    background-color: #FDC913;
+    border: none;
+    height: 50px;
+    width: 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.counter button:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.counter button:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+  
+.order-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+    border: 1px solid #5f5f5f3f;
+    width: 300px;
+    height: 110px;
+    padding: 50px 50px;
+}
+
+.order-details p {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.extra-price {
+    color: #5F5F5F;
+}
+
+.total-price {
+    color: #CE2829;
+}
+
+.count-order button {
+    position: relative;
+    bottom: 3px;
+    width: 100%;
+    height: 60px;
+    background-color: #FDC913;
+    border-radius: 5px;
+    border: none;
+    color: #333;
+    font-size: 22px;
+    font-weight: 600;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.count-order button:hover{
+    transform: scale(1.003);
+    background-color: #fdca13ee;
+    cursor: pointer;
+    box-shadow: 0.4px 0.4px #5F5F5F;
+}
+ 
+.count-order button:disabled {
+        background-color: #5f5f5f8a;
+        cursor: not-allowed;
+        transform: scale(1.00);
+}
 .order-pizza-page {
     background-image: none;
     background-color: white;
