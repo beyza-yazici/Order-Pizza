@@ -53,7 +53,6 @@ function OrderPizza({goBack, onSuccess}) {
     axios.post('https://reqres.in/api/pizza', orderData)
       .then(response => {
         console.log('Gelen Yanıt:', response.data);
-        alert("Sipariş başarıyla gönderildi!");
         
         setOrder({ selectedExtras: [] });
         setSelectedSize('');
@@ -63,8 +62,7 @@ function OrderPizza({goBack, onSuccess}) {
         onSuccess();
       })
       .catch(error => {
-        console.error('API isteği sırasında bir hata oluştu:', error);
-        alert("Sipariş gönderilirken bir hata oluştu.");
+        console.error('API isteği sırasında bir hata oluştu:', error);q
       });
   };
 
