@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { pizzaData } from '../sahteVeri';
-import { Form, FormGroup, Label } from 'reactstrap';
+import { Button, Form, FormGroup, Label } from 'reactstrap';
 import "../css/OrderPizza.css"
 import "../../images/iteration-1-images/logo.svg"
 import axios from 'axios';
@@ -62,7 +62,7 @@ function OrderPizza({goBack, onSuccess}) {
         onSuccess();
       })
       .catch(error => {
-        console.error('API isteği sırasında bir hata oluştu:', error);q
+        console.error('API isteği sırasında bir hata oluştu:', error);
       });
   };
 
@@ -111,119 +111,129 @@ function OrderPizza({goBack, onSuccess}) {
   };
 
   return (
-    <>
-      <header>
-        <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
-        <div className="order-header">
-          <button onClick={goBack}>Anasayfa</button>
-          <button>Seçenekler</button>
-          <button>Sipariş Oluştur</button>
-        </div>
-      </header>
+  <div>
+  <header>
+    <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
+    <div className="order-header">
+      <button onClick={goBack}>Anasayfa</button>
+      <button>Seçenekler</button>
+      <button>Sipariş Oluştur</button>
+    </div>
+  </header>
 
-      <section>
-        <div className="pizza-info">
-          <h3>{name}</h3>
-          <div className="pizza-details">
-            <p>{price}₺</p>
-            <div className="rating">
-              <p>{rating}</p>
-              <p>({reviewCount})</p>
-            </div>
+  <section>
+    <div className="pizza-info">
+      <h3>{name}</h3>
+      <div className="pizza-details">
+        <p>{price}₺</p>
+        <div className="rating">
+          <p>{rating}</p>
+          <p>({reviewCount})</p>
+        </div>
+      </div>
+      <p>{description}</p>
+    </div>
+
+    <Form onSubmit={handleSubmit}>
+      <FormGroup className="pizza-sizes">
+        <div className="selection-container">
+          <Label className="size-header">
+            <h3 className="required">Boyut Seç</h3>
+          </Label>
+          <div className="pizza-size-selection">
+            <input type="radio" id="small" name="size" value="small" onChange={handleSizeChange} />
+            <label htmlFor="small">Küçük</label>
           </div>
-          <p>{description}</p>
+          <div className="pizza-size-selection">
+            <input type="radio" id="medium" name="size" value="medium" onChange={handleSizeChange} />
+            <label htmlFor="medium">Orta</label>
+          </div>
+          <div className="pizza-size-selection">
+            <input type="radio" id="large" name="size" value="large" onChange={handleSizeChange} />
+            <label htmlFor="large">Büyük</label>
+          </div>
         </div>
+      </FormGroup>
 
-        <Form onSubmit={handleSubmit}>
-          <FormGroup className="pizza-sizes">
-          <div className="selection-container">
-          <div className="size-selection">
-            <Label className="size-header">
-              <h3>Boyut Seç</h3></Label>
-            <div className="pizza-size-selection">
-              <input type="radio" id="small" name="size" value="small" onChange={handleSizeChange} />
-              <label htmlFor="small">Küçük</label>
-              <input type="radio" id="medium" name="size" value="medium" onChange={handleSizeChange} />
-              <label htmlFor="medium">Orta</label>
-              <input type="radio" id="large" name="size" value="large" onChange={handleSizeChange} />
-              <label htmlFor="large">Büyük</label>
-            </div>
-            </div>
+      <div className="dough-selection">
+        <h3 className="required">Hamur Seç</h3>
+        <select value={selectedDough} onChange={handleDoughChange}>
+          <option value="">Hamur Kalınlığı</option>
+          <option value="İnce">İnce</option>
+          <option value="Normal">Normal</option>
+          <option value="Kalın">Kalın</option>
+        </select>
+      </div>
 
-            <div className="dough-selection">
-            <Label className="dough-sizes">
-              <h3>Hamur Seç</h3></Label>
-            <select value={selectedDough} onChange={handleDoughChange}>
-              <option value="">Hamur Kalınlığı</option>
-              <option value="İnce">İnce</option>
-              <option value="Normal">Normal</option>
-              <option value="Kalın">Kalın</option>
-            </select>
-            </div>
-            </div>
-            
+      <FormGroup className="extras">
+        <h3>Ek Mazemeler</h3>
+        <p>Ekstra malzeme: 5₺</p>
 
-            <div className="extras">
-              <h3>Ek Mazemeler</h3>
-              <p>En fazla 10 malzeme seçebilirsiniz. 5₺</p>
-            </div>
-            <div className="extras-selection">
-              {extras.map((extra) => (
-                <div key={extra}>
-                  <input
-                    type="checkbox"
-                    id={extra}
-                    value={extra}
-                    onChange={handleCheckboxChange}
-                    checked={order.selectedExtras.includes(extra)}
-                  />
-                  <label htmlFor={extra}>{extra}</label>
-                </div>
-              ))}
-            </div>
-
-            <div>
-              <label htmlFor="ad" >İsim:</label>
+        <div className="extras-selection">
+          {extras.map((extra) => (
+            <div className='extra' key={extra}>
               <input
-                data-cy="ad"
-                type="text"
-                id="ad"
-                name="ad"
-                value={ad}
-                onChange={handleNameChange}
-                minLength={3}
-                required
+                type="checkbox"
+                id={extra}
+                value={extra}
+                onChange={handleCheckboxChange}
+                checked={order.selectedExtras.includes(extra)}
               />
-              {error && <p style={{ color: 'red' }}>{error}</p>}
+              <label htmlFor={extra}>{extra}</label>
             </div>
+          ))}
+        </div>
+        {order.selectedExtras.length >= 10 && (
+          <p style={{ color: 'red' }}>En fazla 10 malzeme seçebilirsiniz.</p>
+        )}
+      </FormGroup>
 
-            <h3>Sipariş Notu</h3>
-            <label htmlFor="note">
-              <textarea id="note" name="note" rows="4" cols="50" placeholder="Siparişine eklemek istediğin bir not var mı?" />
-            </label>
+      <FormGroup className="ad">
+        <label htmlFor="ad">
+        <h3>İsim : </h3></label>
+        <input
+          data-cy="ad"
+          type="text"
+          id="ad"
+          name="ad"
+          value={ad}
+          onChange={handleNameChange}
+          minLength={3}
+          required
+          placeholder="Lütfen isminizi giriniz."
+        />
+        {error && <p style={{ color: 'red' }}>{error}</p>}
 
-            <hr />
-            <div className="count-order">
-              <div className="counter">
-                <button onClick={decrement} className="decrement">-</button>
-                <span className="count">{count}</span>
-                <button onClick={increment} className="increment">+</button>
-                <fieldset className='order-details'>
-                  <h3>Sipariş Toplamı</h3>
-                  <div className="extra-price">
-                    <p>Seçimler:</p> <p>{getExtrasPrice()} ₺</p>
-                  </div>
-                  <div className="total-price">
-                  <p>Toplam:</p><p> {total} ₺</p>
-                  </div>
-                </fieldset>
-                <button type="submit" disabled={!isFormValid()}>SİPARİŞ VER</button>
-              </div>
-            </div>
-          </FormGroup>
-        </Form>
-      </section>
-    </>
+        <h3>Sipariş Notu</h3>
+        <label htmlFor="note">
+          <textarea id="note" name="note" rows="4" cols="50" placeholder="Siparişine eklemek istediğin bir not var mı?" />
+        </label>
+        </FormGroup>
+
+      <hr />
+      <div className="count-order">
+        <FormGroup>
+          <div className="counter">
+            <Button onClick={decrement} className="decrement">-</Button>
+            <span className="count">{count}</span>
+            <Button onClick={increment} className="increment">+</Button>
+          </div>
+        </FormGroup>
+
+        <FormGroup className="order-details">
+          <h3>Sipariş Toplamı</h3>
+          <div className="extra-price">
+            <p>Seçimler:</p> <p>{getExtrasPrice()} ₺</p>
+          </div>
+          <div className="total-price">
+            <p>Toplam:</p><p> {total} ₺</p>
+          </div>
+        <Button type="submit" disabled={!isFormValid()}>SİPARİŞ VER</Button>
+        </FormGroup>
+        </div>
+    </Form>
+  </section>
+</div>
   );
 }
 

@@ -31,6 +31,10 @@ header {
     font-weight: bold;
 }
 
+.order-header button:hover:not(:last-child){
+    color: darkblue;
+}
+
 
 header img {
     display: flex;
@@ -39,7 +43,16 @@ header img {
 }
 
 section {
+    font-family: "Roboto Condensed", serif;
     padding: 0px 32vw;
+}
+
+.pizza-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
+    font-family: "Barlow", serif;
 }
 
 section h3{
@@ -67,7 +80,6 @@ section h3{
     color: #5F5F5F;
     line-height: 25px;
     font-size: 14px;
-    margin-top: 4px;
 }
 
 .rating {
@@ -92,58 +104,90 @@ Form {
     gap: 50px;
 }
 
-.pizza-size-selection{
+.pizza-sizes {
     display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
-    justify-content: center;
-    text-align: center;
-    gap: 10px;
-    color: #5F5F5F;
+    gap: 55%
+}
+.pizza-size-selection :hover{
+    cursor: pointer;
 }
 
 .selection-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 30px;
-}
-
-.size-selection,
-.dough-selection{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-.size-selection Label,
-.dough-selection Label {
-    margin-bottom: 10px;
-}
-
-.pizza-size-selection input {
-    margin-bottom: 5px;
-  }
-
-  select {
-    margin-top: 5px;
-  }
-
-  .dough-size {
     display: flex;
     flex-direction: column;
     gap: 20px;
     max-width: 300px;
 }
 
+.pizza-size-selection{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    gap: 10px;
+    color: #333;
+  }
+
+.pizza-size-selection input{
+    width: 15px;
+    height: 15px;
+}
+
+.pizza-size-selection input [type="radio"] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid #333;
+    background-color: #fff;
+}
+
+.dough-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    justify-content: flex-start;
+    align-items: flex-start;
+    letter-spacing: 0.02em;
+}
+
+
+.dough-selection select {
+    width: 140px;
+    text-align: center;
+    border-color: #5F5F5F;
+    transition: 0.3s color ease;
+    border-radius: 5px;
+    appearance: none;
+    padding: 4px;
+    border: 2px solid #5F5F5F;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+  }
+
+.dough-selection option{
+    border-color: #5F5F5F;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.dough-selection select:hover{
+    cursor: pointer;
+}
+
 .extras {
     display: flex;
     flex-direction: column;
-    gap: 30px;
 }
 
 .extras p {
     color: #333;
     position: relative;
-    bottom: 10px;
 }
 
 .extras-selection {
@@ -151,20 +195,35 @@ Form {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.extra :hover{
+    cursor: pointer;
+}
+
+.extra {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     width: 11vw;
     margin-bottom: 30px;
 }
 
-.extra-checkbox {
-    margin-right: 10px;
+.ad{
+    font-size: 20px;
+    margin-top: 0;
 }
 
-.note{
+.ad textarea{
     display: flex;
     flex-direction: column;
     gap: 20px;
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #5F5F5F;
 }
 
 .count-order {
@@ -176,6 +235,7 @@ Form {
 }
 
 .counter{
+    all: unset;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -183,7 +243,8 @@ Form {
     text-align: center;
 }
 
-.counter span{
+.count{
+    all: unset;
     border: 1px solid #5f5f5f3f;
     height: 48px;
     width: 41px;
@@ -192,23 +253,13 @@ Form {
     align-items: center;
 }
 
-.counter button{
+.counter button {
     background-color: #FDC913;
     border: none;
     height: 50px;
     width: 40px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.counter button:first-child {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.counter button:last-child {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
 }
   
 .order-details {
@@ -216,14 +267,14 @@ Form {
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    gap: 20px;
     border: 1px solid #5f5f5f3f;
     width: 300px;
-    height: 110px;
-    padding: 50px 50px;
+    padding: 50px;
+    border-radius: 10px;
 }
 
-.order-details p {
+.extra-price,
+.total-price {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -242,7 +293,8 @@ Form {
     color: #CE2829;
 }
 
-.count-order button {
+
+.order-details button {
     position: relative;
     bottom: 3px;
     width: 100%;
@@ -253,20 +305,13 @@ Form {
     color: #333;
     font-size: 22px;
     font-weight: 600;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    cursor: pointer;
+    
 }
 
-.count-order button:hover{
-    transform: scale(1.003);
-    background-color: #fdca13ee;
-    cursor: pointer;
-    box-shadow: 0.4px 0.4px #5F5F5F;
-}
- 
-.count-order button:disabled {
-        background-color: #5f5f5f8a;
-        cursor: not-allowed;
-        transform: scale(1.00);
+.required::after{
+    content: '*';
+    color: red;
 }
 .order-pizza-page {
     background-image: none;
