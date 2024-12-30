@@ -7,8 +7,8 @@ import axios from 'axios';
 
 function OrderPizza({goBack, onSuccess}) {
   const [order, setOrder] = useState({ selectedExtras: [] });
-  const [selectedDough, setSelectedDough] = useState('');
-  const [selectedSize, setSelectedSize] = useState('');
+  const [selectedDough, setSelectedDough] = useState('Normal');
+  const [selectedSize, setSelectedSize] = useState('medium');
   const [count, setCount] = useState(1);
   const [ad, setAd] = useState('');
   const [error, setError] = useState('');
@@ -141,19 +141,18 @@ function OrderPizza({goBack, onSuccess}) {
             <h3 className="required">Boyut Seç</h3>
           </Label>
           <div className="pizza-size-selection">
-            <input type="radio" id="small" name="size" value="small" onChange={handleSizeChange} />
+            <input type="radio" id="small" name="size" value="small" onChange={handleSizeChange} checked={selectedSize === 'small'}/>
             <label htmlFor="small">Küçük</label>
           </div>
           <div className="pizza-size-selection">
-            <input type="radio" id="medium" name="size" value="medium" onChange={handleSizeChange} />
+            <input type="radio" id="medium" name="size" value="medium" onChange={handleSizeChange} checked={selectedSize === 'medium'} />
             <label htmlFor="medium">Orta</label>
           </div>
           <div className="pizza-size-selection">
-            <input type="radio" id="large" name="size" value="large" onChange={handleSizeChange} />
+            <input type="radio" id="large" name="size" value="large" onChange={handleSizeChange} checked={selectedSize === 'large'}/>
             <label htmlFor="large">Büyük</label>
           </div>
         </div>
-      </FormGroup>
 
       <div className="dough-selection">
         <h3 className="required">Hamur Seç</h3>
@@ -164,10 +163,12 @@ function OrderPizza({goBack, onSuccess}) {
           <option value="Kalın">Kalın</option>
         </select>
       </div>
+      </FormGroup>
+
 
       <FormGroup className="extras">
         <h3>Ek Mazemeler</h3>
-        <p>Ekstra malzeme: 5₺</p>
+        <p>(En az 4 malzeme seçiniz.) Ekstra malzeme: 5₺</p>
 
         <div className="extras-selection">
           {extras.map((extra) => (
@@ -203,10 +204,12 @@ function OrderPizza({goBack, onSuccess}) {
           placeholder="Lütfen isminizi giriniz."
         />
         {error && <p style={{ color: 'red' }}>{error}</p>}
+        </FormGroup>
 
+        <FormGroup className="note">
         <h3>Sipariş Notu</h3>
         <label htmlFor="note">
-          <textarea id="note" name="note" rows="4" cols="50" placeholder="Siparişine eklemek istediğin bir not var mı?" />
+          <input id="note" name="note" placeholder="Siparişine eklemek istediğin bir not var mı?"/>
         </label>
         </FormGroup>
 

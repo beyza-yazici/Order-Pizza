@@ -107,9 +107,7 @@ Form {
 .pizza-sizes {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 55%
+    justify-content: space-between;
 }
 .pizza-size-selection :hover{
     cursor: pointer;
@@ -136,20 +134,12 @@ Form {
     height: 15px;
 }
 
-.pizza-size-selection input [type="radio"] {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid #333;
-    background-color: #fff;
-}
-
 .dough-selection {
     display: flex;
     flex-direction: column;
     gap: 8px;
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     justify-content: flex-start;
     align-items: flex-start;
     letter-spacing: 0.02em;
@@ -159,12 +149,8 @@ Form {
 .dough-selection select {
     width: 140px;
     text-align: center;
-    border-color: #5F5F5F;
-    transition: 0.3s color ease;
     border-radius: 5px;
-    appearance: none;
     padding: 4px;
-    border: 2px solid #5F5F5F;
     font-weight: 500;
     letter-spacing: 0.1em;
   }
@@ -188,13 +174,14 @@ Form {
 .extras p {
     color: #333;
     position: relative;
+    margin-bottom: 30px;
 }
 
 .extras-selection {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .extra :hover{
@@ -216,14 +203,16 @@ Form {
     margin-top: 0;
 }
 
-.ad textarea{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.ad input{
+    width: 500px;
+    height: 30px;
+}
+
+.note input{
+    width: 100%;
     height: 40px;
-    padding: 8px 12px;
     border-radius: 5px;
-    border: 1px solid #5F5F5F;
+    
 }
 
 .count-order {
@@ -235,7 +224,6 @@ Form {
 }
 
 .counter{
-    all: unset;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -244,7 +232,6 @@ Form {
 }
 
 .count{
-    all: unset;
     border: 1px solid #5f5f5f3f;
     height: 48px;
     width: 41px;
@@ -277,12 +264,13 @@ Form {
 .total-price {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
     font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.02em;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+   
 }
 
 .extra-price {
@@ -295,7 +283,6 @@ Form {
 
 
 .order-details button {
-    position: relative;
     bottom: 3px;
     width: 100%;
     height: 60px;
@@ -317,3 +304,126 @@ Form {
     background-image: none;
     background-color: white;
   }
+
+  @media (max-width: 768px) {
+    header {
+        height: auto;
+        padding: 20px 10px;
+        text-align: center;
+    }
+    header img {
+        width: 60%;
+        margin: 10px;
+    }
+    .order-header {
+        align-self: center;
+    }
+    .order-header button {
+        font-size: 16px;
+        padding: 5px;
+    }
+    .order-header button:last-child {
+        font-weight: bold;
+    }
+    section {
+        padding: 0 10px;
+    }
+    .pizza-info {
+        display: block;
+        align-items: flex-start;
+    }
+    .pizza-info p:last-child {
+        color: #5F5F5F;
+        line-height: 20px;
+        font-size: 12px;
+    }
+    .rating {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    .rating p {
+        font-size: 14px;
+        font-weight: 300;
+    }
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+    .pizza-sizes {
+        display: block;
+        justify-content: flex-start;
+    }
+    .pizza-size-selection {
+        display: block;
+        margin: 10px 0;
+        align-items: flex-start;
+    }
+    .pizza-size-selection input {
+        width: 20px;
+        height: 20px;
+    }
+    .selection-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    .dough-selection select {
+        width: 100%;
+        font-size: 16px;
+    }
+    .extras-selection {
+        display: block;
+    }
+
+    .extra {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .extra-price,
+    .total-price {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .order-details {
+        width: 100%;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+
+    .order-details button {
+        width: 100%;
+        height: 50px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .count-order {
+        margin-bottom: 40px;
+    }
+
+    .counter {
+        flex-direction: column;
+    }
+
+    .count {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .counter button {
+        width: 100%;
+        height: 50px;
+    }
+    .order-details button {
+        font-size: 18px;
+    }
+}
+
+
