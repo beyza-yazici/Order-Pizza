@@ -211,7 +211,6 @@ Form {
 .note input{
     width: 100%;
     height: 40px;
-    border-radius: 5px;
     
 }
 
@@ -296,6 +295,13 @@ Form {
     
 }
 
+.order-details button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    border: 2px solid #aaa;
+}
+
+
 .required::after{
     content: '*';
     color: red;
@@ -308,25 +314,26 @@ Form {
   @media (max-width: 768px) {
     header {
         height: auto;
-        padding: 20px 10px;
+        padding: 15px 10px;
         text-align: center;
     }
     header img {
-        width: 60%;
+        width: 80%;
         margin: 10px;
     }
     .order-header {
         align-self: center;
+        text-align: center;
     }
     .order-header button {
         font-size: 16px;
-        padding: 5px;
+        padding: 10px 20px;
     }
     .order-header button:last-child {
         font-weight: bold;
     }
     section {
-        padding: 0 10px;
+        padding: 10px;
     }
     .pizza-info {
         display: block;
@@ -334,13 +341,13 @@ Form {
     }
     .pizza-info p:last-child {
         color: #5F5F5F;
-        line-height: 20px;
+        line-height: 18px;
         font-size: 12px;
     }
     .rating {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
     }
     .rating p {
         font-size: 14px;
@@ -350,7 +357,7 @@ Form {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 20px;
     }
     .pizza-sizes {
         display: block;
@@ -388,30 +395,45 @@ Form {
         font-size: 16px;
         font-weight: 500;
     }
+
+    .ad {
+        font-size: 18px;
+        margin-top: 0;
+    }
+
+    .ad input {
+        width: 100%;
+        height: 35px;
+    }
+
     .order-details {
         width: 100%;
-        padding: 20px;
+        padding: 15px;
         border-radius: 5px;
-        margin: 20px 0;
+        margin: 15px 0;
     }
 
     .order-details button {
         width: 100%;
-        height: 50px;
-        font-size: 20px;
+        height: 45px;
+        font-size: 18px;
         font-weight: 600;
+        padding: 10px 20px;
     }
+
+
     .count-order {
-        margin-bottom: 40px;
+        margin-bottom: 20px;
     }
 
     .counter {
         flex-direction: column;
+        width: 50px;
     }
 
     .count {
         width: 100%;
-        height: 50px;
+        height: 45px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -424,6 +446,156 @@ Form {
     .order-details button {
         font-size: 18px;
     }
+
 }
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 5px;
+        text-align: center;
+    }
+
+    header img {
+        width: 80%;
+        margin: 10px;
+    }
+
+    .order-header {
+        align-self: center;
+        text-align: center;
+    }
+
+    .order-header button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .order-header button:last-child {
+        font-weight: bold;
+    }
+
+    section {
+        padding: 10px;
+    }
+
+    .pizza-info {
+        display: block;
+        align-items: flex-start;
+    }
+
+    .pizza-info p:last-child {
+        color: #5F5F5F;
+        line-height: 18px;
+        font-size: 11px;
+    }
+
+    .rating {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .rating p {
+        font-size: 12px;
+        font-weight: 300;
+    }
+
+    form {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .pizza-sizes {
+        display: block;
+        justify-content: flex-start;
+    }
+
+    .pizza-size-selection {
+        display: block;
+        margin: 8px 0;
+        align-items: flex-start;
+    }
+
+    .pizza-size-selection input {
+        width: 18px;
+        height: 18px;
+    }
+
+    .selection-container {
+        max-width: 100%;
+        padding: 0 5px;
+    }
+
+    .dough-selection select {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .extras-selection {
+        display: block;
+    }
+
+    .extra {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+    }
+
+    .extra-price,
+    .total-price {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .ad {
+        font-size: 16px;
+        margin-top: 0;
+    }
+
+    .ad input {
+        width: 100%;
+        height: 30px;
+    }
+
+    .order-details {
+        width: 100%;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+    }
+
+    .order-details button {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 8px 16px;
+    }
+
+    .count-order {
+        margin-bottom: 20px;
+    }
+
+    .counter {
+        flex-direction: column;
+        width: 50px;
+    }
+
+    .count {
+        width: 100%;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .counter button {
+        width: 100%;
+        height: 40px;
+    }
+}
+
 
 
