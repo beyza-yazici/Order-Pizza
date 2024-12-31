@@ -126,7 +126,7 @@ Form {
     justify-content: flex-start;
     text-align: center;
     gap: 10px;
-    color: #333;
+    color: #5F5F5F;
   }
 
 .pizza-size-selection input{
@@ -172,7 +172,7 @@ Form {
 }
 
 .extras p {
-    color: #333;
+    color: #5F5F5F;
     position: relative;
     margin-bottom: 30px;
 }
@@ -231,7 +231,7 @@ Form {
 }
 
 .count{
-    border: 1px solid #5f5f5f3f;
+    border: 1px solid #5F5F5F;
     height: 48px;
     width: 41px;
     display: flex;
@@ -253,7 +253,7 @@ Form {
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    border: 1px solid #5f5f5f3f;
+    border: 1px solid #5F5F5F;
     width: 300px;
     padding: 50px;
     border-radius: 10px;
@@ -288,7 +288,7 @@ Form {
     background-color: #FDC913;
     border-radius: 5px;
     border: none;
-    color: #333;
+    color: #5F5F5F;
     font-size: 22px;
     font-weight: 600;
     cursor: pointer;
@@ -596,6 +596,3 @@ Form {
         height: 40px;
     }
 }
-
-
-
