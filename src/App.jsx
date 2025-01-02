@@ -9,8 +9,10 @@ function App() {
 
   const [currentPage, setCurrentPage] = useState(false);
   const [isOrderSuccess, setIsOrderSuccess] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(null);
 
-  const handleOrderSuccess = () => {
+  const handleOrderSuccess = (orderData) => {
+    setOrderDetails(orderData);
     setIsOrderSuccess(true);
   };
 
@@ -19,7 +21,7 @@ function App() {
       {!currentPage ? (
         <HomePage onButtonClick={() => setCurrentPage(true)} />
       ) : isOrderSuccess ? (
-        <Success goBack={() => setCurrentPage(false)} />
+        <Success goBack={() => setCurrentPage(false)} orderDetails={orderDetails}/>
       ) : (
         <OrderPizza goBack={() => setCurrentPage(false)} onSuccess={handleOrderSuccess} />
       )}

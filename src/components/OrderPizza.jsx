@@ -8,7 +8,7 @@ import axios from 'axios';
 function OrderPizza({goBack, onSuccess}) {
   const [order, setOrder] = useState({ selectedExtras: [] });
   const [selectedDough, setSelectedDough] = useState('Normal');
-  const [selectedSize, setSelectedSize] = useState('medium');
+  const [selectedSize, setSelectedSize] = useState('Orta');
   const [count, setCount] = useState(1);
   const [ad, setAd] = useState('');
   const [error, setError] = useState('');
@@ -59,7 +59,7 @@ function OrderPizza({goBack, onSuccess}) {
         setSelectedDough('');
         setCount(1);
         setAd('');
-        onSuccess();
+        onSuccess(orderData);
       })
       .catch(error => {
         console.error('API isteği sırasında bir hata oluştu:', error);
@@ -90,9 +90,9 @@ function OrderPizza({goBack, onSuccess}) {
   const decrement = () => { if (count > 0) setCount(count - 1); };
 
   const getSizePrice = () => {
-    if (selectedSize === 'small') return 30;
-    if (selectedSize === 'medium') return 50;
-    if (selectedSize === 'large') return 70;
+    if (selectedSize === 'Küçük') return 30;
+    if (selectedSize === 'Orta') return 50;
+    if (selectedSize === 'Büyük') return 70;
     return 0;
   };
 
@@ -105,7 +105,7 @@ function OrderPizza({goBack, onSuccess}) {
       selectedSize !== '' &&
       selectedDough !== '' &&
       count > 0 &&
-      order.selectedExtras.length > 0 && 
+      order.selectedExtras.length >= 4 &&
       order.selectedExtras.length <= 10
     );
   };
@@ -141,16 +141,16 @@ function OrderPizza({goBack, onSuccess}) {
             <h3 className="required">Boyut Seç</h3>
           </Label>
           <div className="pizza-size-selection">
-            <input type="radio" id="small" name="size" value="small" onChange={handleSizeChange} checked={selectedSize === 'small'}/>
-            <label htmlFor="small">Küçük</label>
+            <input type="radio" id="Küçük" name="size" value="Küçük" onChange={handleSizeChange} checked={selectedSize === 'Küçük'}/>
+            <label htmlFor="Küçük">Küçük</label>
           </div>
           <div className="pizza-size-selection">
-            <input type="radio" id="medium" name="size" value="medium" onChange={handleSizeChange} checked={selectedSize === 'medium'} />
-            <label htmlFor="medium">Orta</label>
+            <input type="radio" id="Orta" name="size" value="Orta" onChange={handleSizeChange} checked={selectedSize === 'Orta'} />
+            <label htmlFor="Orta">Orta</label>
           </div>
           <div className="pizza-size-selection">
-            <input type="radio" id="large" name="size" value="large" onChange={handleSizeChange} checked={selectedSize === 'large'}/>
-            <label htmlFor="large">Büyük</label>
+            <input type="radio" id="Büyük" name="size" value="Büyük" onChange={handleSizeChange} checked={selectedSize === 'Büyük'}/>
+            <label htmlFor="Büyük">Büyük</label>
           </div>
         </div>
 

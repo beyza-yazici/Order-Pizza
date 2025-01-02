@@ -2,24 +2,44 @@
     background-color: #CE2829;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 100vh;
-    font-family: "Barlow", serif;
-    gap: 24vh
+    gap: 15vh;
 }
 
+.success-page img{
+    margin-top: 60px;
+}
 .success-message {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 0;
 }
 
-.success-message p {
+.onay {
     color: #fff;
-    font-size: 70px;
+    font-size: 80px;
     font-weight: 200;
     margin: 0;
+    font-family: "Barlow", serif;
+    letter-spacing: -0.25rem;
 }
+
+.lezzet {
+    color: #FDC913;
+    font-size: 35px;
+    font-weight: 200;
+    margin: 0;
+    font-family: "Satisfy", serif;
+}
+
+hr {
+    border: 0;
+    border-top: 2px solid #fff;
+    width: 140%;
+    margin: 20px 0;
+  }
