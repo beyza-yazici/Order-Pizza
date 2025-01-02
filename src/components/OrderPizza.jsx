@@ -48,7 +48,10 @@ function OrderPizza({goBack, onSuccess}) {
       extras: order.selectedExtras,
       count: count,
       price: price + getExtrasPrice() + getSizePrice(),
-    };
+      getExtrasPrice: function() {
+        return this.extras.length * 5;
+    }
+  }
 
     axios.post('https://reqres.in/api/pizza', orderData)
       .then(response => {

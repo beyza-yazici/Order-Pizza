@@ -3,8 +3,6 @@ import "../../images/iteration-1-images/logo.svg";
 import "../css/Success.css";
 
 function SuccessPage({ orderDetails }) {
-
-    const getExtrasPrice = () => order.selectedExtras.length * 5;
     
     return (
         <div className="success-page">
@@ -13,7 +11,7 @@ function SuccessPage({ orderDetails }) {
             </div>
             <div className="success-message">
             <p className="lezzet">lezzetin yolda</p>
-                <p className="onay">SİPARİŞ ALINDI</p>
+            <p className="onay">SİPARİŞ ALINDI</p>
                 <hr />
             <div className="order-sum">
                 <h4>Position Absolute Acı Pizza</h4>
@@ -24,8 +22,9 @@ function SuccessPage({ orderDetails }) {
                 </div>
                 <div className="order-sum-card">
                     <h5>Sipariş Toplamı</h5>
-                <p><strong>Seçimler: </strong> {orderDetails.getExtrasPrice}</p>
-                <p><strong>Toplam: {orderDetails.price}₺ </strong></p>
+                    <div>
+                <p><strong>Seçimler: </strong></p><p><strong>{orderDetails.getExtrasPrice()}₺ </strong></p></div>
+                <div><p><strong>Toplam:  </strong></p><p><strong>{orderDetails.price}₺ </strong></p></div>
                 </div>
                 </div>
             </div>
