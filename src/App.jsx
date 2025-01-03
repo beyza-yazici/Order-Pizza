@@ -4,6 +4,7 @@ import './App.css'
 import HomePage from './components/HomePage'
 import OrderPizza from './components/OrderPizza';
 import Success from './components/Success';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
       ) : (
         <OrderPizza goBack={() => setCurrentPage(false)} onSuccess={handleOrderSuccess} />
       )}
+      <Footer/>
     </div>
   );
 }

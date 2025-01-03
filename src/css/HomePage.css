@@ -61,3 +61,16 @@ body {
 .home-button button:hover {
   background-color: #FDC913;
 }
+
+.home-h2 p{
+  color: #FDC913;
+  font-size: 30px;
+  font-weight: 200;
+  margin-top: 0;
+  font-family: "Satisfy", serif;
+  margin-bottom: 0;
+}
+
+.icon-items{
+  list-style-type: none;
+}
