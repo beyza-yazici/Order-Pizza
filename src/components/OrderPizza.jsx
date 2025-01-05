@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { pizzaData } from '../sahteVeri';
 import { Button, Form, FormGroup, Label } from 'reactstrap';
-import "../css/OrderPizza.css"
-import "../../images/iteration-1-images/logo.svg"
+import "../css/OrderPizza.css";
+import "../../images/iteration-1-images/logo.svg";
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,11 +18,19 @@ function OrderPizza({ goBack, onSuccess }) {
     note: ''
   };
 
+  const initialErrors = {
+    ad: '',
+    selectedSize: '',
+    selectedDough: '',
+    selectedExtras: '',
+  };
+
   const [formData, setFormData] = useState(initialFormState);
+  const [errors, setErrors] = useState(initialErrors);
 
   const { name, price, description, rating, reviewCount } = pizzaData[0];
 
-   const sizeOptions = [
+  const sizeOptions = [
     { value: 'Küçük', label: 'Küçük', price: 30 },
     { value: 'Orta', label: 'Orta', price: 50 },
     { value: 'Büyük', label: 'Büyük', price: 70 },
@@ -39,6 +47,33 @@ function OrderPizza({ goBack, onSuccess }) {
     "Zeytin", "Sucuk", "Roka", "Mantar", "Domates", "Tavuk Izgara", "Ananas", "Fesleğen"
   ];
 
+  const validate = (name, value) => {
+    switch (name) {
+      case 'ad':
+        if (value.length < 3) {
+          return "İsim en az 3 karakter olmalıdır.";
+        }
+        return '';
+      case 'selectedSize':
+        if (!value) {
+          return "Lütfen bir boyut seçiniz.";
+        }
+        return '';
+      case 'selectedDough':
+        if (!value) {
+          return "Lütfen bir hamur kalınlığı seçiniz.";
+        }
+        return '';
+      case 'selectedExtras':
+        if (value.length < 4) {
+          return "En az 4 ekstra malzeme seçmelisiniz.";
+        }
+        return '';
+      default:
+        return '';
+    }
+  };
+
   const handleChange = (event) => {
     const { name, value, type, checked } = event.target;
 
@@ -52,28 +87,41 @@ function OrderPizza({ goBack, onSuccess }) {
     } else {
       setFormData((prevData) => ({ ...prevData, [name]: value }));
     }
+
+    const errorMessage = validate(name, value);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMessage,
+    }));
+  };
+
+  const handleBlur = (event) => {
+    const { name, value } = event.target;
+
+    const errorMessage = validate(name, value);
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: errorMessage,
+    }));
+
+    if (errorMessage) {
+      toast.error(errorMessage);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.ad.length < 3) {
-      toast.error("İsim en az 3 karakter olmalıdır.");
-      return;
-    }
+    const finalErrors = {
+      ad: validate('ad', formData.ad),
+      selectedSize: validate('selectedSize', formData.selectedSize),
+      selectedDough: validate('selectedDough', formData.selectedDough),
+      selectedExtras: validate('selectedExtras', formData.selectedExtras),
+    };
 
-    if (formData.selectedSize === '') {
-      toast.error("Lütfen bir boyut seçiniz.");
-      return;
-    }
-
-    if (formData.selectedDough === '') {
-      toast.error("Lütfen bir hamur kalınlığı seçiniz.");
-      return;
-    }
-
-    if (formData.selectedExtras.length < 4) {
-      toast.error("Lütfen en az 4 ekstra malzeme seçiniz.");
+    if (Object.values(finalErrors).some((error) => error)) {
+      setErrors(finalErrors);
       return;
     }
 
@@ -84,15 +132,11 @@ function OrderPizza({ goBack, onSuccess }) {
       extras: formData.selectedExtras,
       count: formData.count,
       price: price + getExtrasPrice() + getSizePrice(),
-      getExtrasPrice: function () {
-        return this.extras.length * 5;
-      }
     };
 
     axios.post('https://reqres.in/api/pizza', orderData)
       .then(response => {
         console.log('Gelen Yanıt:', response.data);
-
         setFormData(initialFormState);
         onSuccess(orderData);
         toast.success("Siparişiniz başarıyla alındı!");
@@ -156,6 +200,7 @@ function OrderPizza({ goBack, onSuccess }) {
                 </div>
               ))}
             </div>
+            {errors.selectedSize && <div className="error-message">{errors.selectedSize}</div>}
           </FormGroup>
 
           <FormGroup className="dough-selection">
@@ -172,6 +217,7 @@ function OrderPizza({ goBack, onSuccess }) {
                 </option>
               ))}
             </select>
+            {errors.selectedDough && <div className="error-message">{errors.selectedDough}</div>}
           </FormGroup>
 
           <FormGroup className="extras">
@@ -193,6 +239,7 @@ function OrderPizza({ goBack, onSuccess }) {
                 </div>
               ))}
             </div>
+            {errors.selectedExtras && <div className="error-message">{errors.selectedExtras}</div>}
           </FormGroup>
 
           <FormGroup className="ad">
@@ -206,10 +253,12 @@ function OrderPizza({ goBack, onSuccess }) {
               name="ad"
               value={formData.ad}
               onChange={handleChange}
+              onBlur={handleBlur}
               minLength={3}
               required
               placeholder="Lütfen isminizi giriniz."
             />
+            {errors.ad && <div className="error-message">{errors.ad}</div>}
           </FormGroup>
 
           <FormGroup className="note">
