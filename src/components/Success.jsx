@@ -31,10 +31,10 @@ function SuccessPage({ orderDetails }) {
                     <div className="order-sum-card">
                         <h5>Sipariş Toplamı</h5>
                         <div>
-                            <p><strong>Seçimler: </strong><span>{getExtrasPrice()}₺</span></p>
+                            <p><strong>Seçimler: </strong><p>{getExtrasPrice()}₺</p></p>
                         </div>
                         <div>
-                            <p><strong>Toplam:  </strong><span>{getTotalPrice()}₺</span></p>
+                            <p><strong>Toplam:  </strong><p>{getTotalPrice()}₺</p></p>
                         </div>
                     </div>
                 </div>

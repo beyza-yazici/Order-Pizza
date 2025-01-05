@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { pizzaData } from '../sahteVeri';
 import { Button, Form, FormGroup, Label } from 'reactstrap';
 import "../css/OrderPizza.css";
@@ -27,6 +27,7 @@ function OrderPizza({ goBack, onSuccess }) {
 
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState(initialErrors);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   const { name, price, description, rating, reviewCount } = pizzaData[0];
 
@@ -110,6 +111,20 @@ function OrderPizza({ goBack, onSuccess }) {
     }
   };
 
+  useEffect(() => {
+    const sizePrice = getSizePrice();
+    const extrasPrice = getExtrasPrice();
+    const updatedTotalPrice = (price + sizePrice + extrasPrice) * formData.count;
+    setTotalPrice(updatedTotalPrice);
+  }, [formData, price]);
+
+  const getSizePrice = () => {
+    const sizeOption = sizeOptions.find(option => option.value === formData.selectedSize);
+    return sizeOption ? sizeOption.price : 0;
+  };
+
+  const getExtrasPrice = () => formData.selectedExtras.length * 5;
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -146,15 +161,6 @@ function OrderPizza({ goBack, onSuccess }) {
         toast.error('Lütfen ilgili alanları doldurunuz.');
       });
   };
-
-  const getSizePrice = () => {
-    const sizeOption = sizeOptions.find(option => option.value === formData.selectedSize);
-    return sizeOption ? sizeOption.price : 0;
-  };
-
-  const getExtrasPrice = () => formData.selectedExtras.length * 5;
-
-  const total = (price + getSizePrice() + getExtrasPrice()) * formData.count;
 
   return (
     <div>
@@ -276,6 +282,10 @@ function OrderPizza({ goBack, onSuccess }) {
 
           <Button type="submit">Siparişi Gönder</Button>
         </Form>
+
+        <div className="total-price">
+          <h3>Toplam Fiyat: {totalPrice}₺</h3>
+        </div>
       </section>
 
       <ToastContainer />
