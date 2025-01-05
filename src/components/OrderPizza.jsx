@@ -8,15 +8,21 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function OrderPizza({ goBack, onSuccess }) {
-  const [order, setOrder] = useState({ selectedExtras: [] });
-  const [selectedDough, setSelectedDough] = useState('');
-  const [selectedSize, setSelectedSize] = useState('');
-  const [count, setCount] = useState(1);
-  const [ad, setAd] = useState('');
+
+  const initialFormState = {
+    ad: '',
+    selectedSize: '',
+    selectedDough: '',
+    selectedExtras: [],
+    count: 1,
+    note: ''
+  };
+
+  const [formData, setFormData] = useState(initialFormState);
 
   const { name, price, description, rating, reviewCount } = pizzaData[0];
 
-  const sizeOptions = [
+   const sizeOptions = [
     { value: 'Küçük', label: 'Küçük', price: 30 },
     { value: 'Orta', label: 'Orta', price: 50 },
     { value: 'Büyük', label: 'Büyük', price: 70 },
@@ -33,47 +39,50 @@ function OrderPizza({ goBack, onSuccess }) {
     "Zeytin", "Sucuk", "Roka", "Mantar", "Domates", "Tavuk Izgara", "Ananas", "Fesleğen"
   ];
 
-  const handleSizeChange = (event) => {
-    setSelectedSize(event.target.value);
-  };
+  const handleChange = (event) => {
+    const { name, value, type, checked } = event.target;
 
-  const handleDoughChange = (event) => {
-    setSelectedDough(event.target.value);
-  };
-
-  const handleNameChange = (event) => {
-    setAd(event.target.value);
+    if (type === 'checkbox') {
+      setFormData((prevData) => {
+        const updatedExtras = checked
+          ? [...prevData.selectedExtras, value]
+          : prevData.selectedExtras.filter((extra) => extra !== value);
+        return { ...prevData, selectedExtras: updatedExtras };
+      });
+    } else {
+      setFormData((prevData) => ({ ...prevData, [name]: value }));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (ad.length < 3) {
+    if (formData.ad.length < 3) {
       toast.error("İsim en az 3 karakter olmalıdır.");
       return;
     }
 
-    if (selectedSize === '') {
+    if (formData.selectedSize === '') {
       toast.error("Lütfen bir boyut seçiniz.");
       return;
     }
 
-    if (selectedDough === '') {
+    if (formData.selectedDough === '') {
       toast.error("Lütfen bir hamur kalınlığı seçiniz.");
       return;
     }
 
-    if (order.selectedExtras.length < 4) {
+    if (formData.selectedExtras.length < 4) {
       toast.error("Lütfen en az 4 ekstra malzeme seçiniz.");
       return;
     }
 
     const orderData = {
-      name: ad,
-      size: selectedSize,
-      dough: selectedDough,
-      extras: order.selectedExtras,
-      count: count,
+      name: formData.ad,
+      size: formData.selectedSize,
+      dough: formData.selectedDough,
+      extras: formData.selectedExtras,
+      count: formData.count,
       price: price + getExtrasPrice() + getSizePrice(),
       getExtrasPrice: function () {
         return this.extras.length * 5;
@@ -84,11 +93,7 @@ function OrderPizza({ goBack, onSuccess }) {
       .then(response => {
         console.log('Gelen Yanıt:', response.data);
 
-        setOrder({ selectedExtras: [] });
-        setSelectedSize('');
-        setSelectedDough('');
-        setCount(1);
-        setAd('');
+        setFormData(initialFormState);
         onSuccess(orderData);
         toast.success("Siparişiniz başarıyla alındı!");
       })
@@ -98,37 +103,14 @@ function OrderPizza({ goBack, onSuccess }) {
       });
   };
 
-  const handleCheckboxChange = (event) => {
-    const value = event.target.value;
-    setOrder((prevOrder) => {
-      const selectedExtras = prevOrder.selectedExtras;
-      let updatedExtras;
-
-      if (selectedExtras.includes(value)) {
-        updatedExtras = selectedExtras.filter((extra) => extra !== value);
-      } else {
-        if (selectedExtras.length < 10) {
-          updatedExtras = [...selectedExtras, value];
-        } else {
-          updatedExtras = selectedExtras;
-        }
-      }
-
-      return { ...prevOrder, selectedExtras: updatedExtras };
-    });
-  };
-
-  const increment = () => setCount(count + 1);
-  const decrement = () => { if (count > 0) setCount(count - 1); };
-
   const getSizePrice = () => {
-    const sizeOption = sizeOptions.find(option => option.value === selectedSize);
+    const sizeOption = sizeOptions.find(option => option.value === formData.selectedSize);
     return sizeOption ? sizeOption.price : 0;
   };
 
-  const getExtrasPrice = () => order.selectedExtras.length * 5;
+  const getExtrasPrice = () => formData.selectedExtras.length * 5;
 
-  const total = (price + getSizePrice() + getExtrasPrice()) * count;
+  const total = (price + getSizePrice() + getExtrasPrice()) * formData.count;
 
   return (
     <div>
@@ -165,10 +147,10 @@ function OrderPizza({ goBack, onSuccess }) {
                   <input
                     type="radio"
                     id={value}
-                    name="size"
+                    name="selectedSize"
                     value={value}
-                    onChange={handleSizeChange}
-                    checked={selectedSize === value}
+                    onChange={handleChange}
+                    checked={formData.selectedSize === value}
                   />
                   <label htmlFor={value}>{label}</label>
                 </div>
@@ -178,7 +160,11 @@ function OrderPizza({ goBack, onSuccess }) {
 
           <FormGroup className="dough-selection">
             <h3 className="required">Hamur Seç</h3>
-            <select value={selectedDough} onChange={handleDoughChange}>
+            <select
+              name="selectedDough"
+              value={formData.selectedDough}
+              onChange={handleChange}
+            >
               <option value="">Hamur Kalınlığı</option>
               {doughOptions.map(({ value, label }) => (
                 <option key={value} value={value}>
@@ -194,24 +180,19 @@ function OrderPizza({ goBack, onSuccess }) {
 
             <div className="extras-selection">
               {extras.map((extra) => (
-                <div className='extra' key={extra}>
+                <div className="extra" key={extra}>
                   <input
                     type="checkbox"
                     id={extra}
                     value={extra}
-                    onChange={handleCheckboxChange}
-                    checked={order.selectedExtras.includes(extra)}
+                    name="selectedExtras"
+                    onChange={handleChange}
+                    checked={formData.selectedExtras.includes(extra)}
                   />
                   <label htmlFor={extra}>{extra}</label>
                 </div>
               ))}
             </div>
-            {order.selectedExtras.length < 4 && (
-              <p style={{ color: 'red' }}>Lütfen en az 4 ekstra malzeme seçiniz.</p>
-            )}
-            {order.selectedExtras.length >= 10 && (
-              <p style={{ color: 'red' }}>En fazla 10 malzeme seçebilirsiniz.</p>
-            )}
           </FormGroup>
 
           <FormGroup className="ad">
@@ -223,8 +204,8 @@ function OrderPizza({ goBack, onSuccess }) {
               type="text"
               id="ad"
               name="ad"
-              value={ad}
-              onChange={handleNameChange}
+              value={formData.ad}
+              onChange={handleChange}
               minLength={3}
               required
               placeholder="Lütfen isminizi giriniz."
@@ -234,31 +215,17 @@ function OrderPizza({ goBack, onSuccess }) {
           <FormGroup className="note">
             <h3>Sipariş Notu</h3>
             <label htmlFor="note">
-              <input id="note" name="note" placeholder="Siparişine eklemek istediğin bir not var mı?" />
+              <input
+                id="note"
+                name="note"
+                placeholder="Siparişine eklemek istediğin bir not var mı?"
+                value={formData.note}
+                onChange={handleChange}
+              />
             </label>
           </FormGroup>
 
-          <hr />
-          <div className="count-order">
-            <FormGroup>
-              <div className="counter">
-                <Button onClick={decrement} className="decrement">-</Button>
-                <span className="count">{count}</span>
-                <Button onClick={increment} className="increment">+</Button>
-              </div>
-            </FormGroup>
-
-            <FormGroup className="order-details">
-              <h3>Sipariş Toplamı</h3>
-              <div className="extra-price">
-                <p>Seçimler:</p> <p>{getExtrasPrice()} ₺</p>
-              </div>
-              <div className="total-price">
-                <p>Toplam:</p><p> {total} ₺</p>
-              </div>
-              <Button type="submit">SİPARİŞ VER</Button>
-            </FormGroup>
-          </div>
+          <Button type="submit">Siparişi Gönder</Button>
         </Form>
       </section>
 
