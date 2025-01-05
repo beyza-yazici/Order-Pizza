@@ -16,6 +16,18 @@ function OrderPizza({ goBack, onSuccess }) {
 
   const { name, price, description, rating, reviewCount } = pizzaData[0];
 
+  const sizeOptions = [
+    { value: 'Küçük', label: 'Küçük', price: 30 },
+    { value: 'Orta', label: 'Orta', price: 50 },
+    { value: 'Büyük', label: 'Büyük', price: 70 },
+  ];
+
+  const doughOptions = [
+    { value: 'İnce', label: 'İnce' },
+    { value: 'Normal', label: 'Normal' },
+    { value: 'Kalın', label: 'Kalın' },
+  ];
+
   const extras = [
     "Sosis", "Pepperoni", "Mozzarella Peyniri", "Biber", "Soğan", "Mısır",
     "Zeytin", "Sucuk", "Roka", "Mantar", "Domates", "Tavuk Izgara", "Ananas", "Fesleğen"
@@ -110,10 +122,8 @@ function OrderPizza({ goBack, onSuccess }) {
   const decrement = () => { if (count > 0) setCount(count - 1); };
 
   const getSizePrice = () => {
-    if (selectedSize === 'Küçük') return 30;
-    if (selectedSize === 'Orta') return 50;
-    if (selectedSize === 'Büyük') return 70;
-    return 0;
+    const sizeOption = sizeOptions.find(option => option.value === selectedSize);
+    return sizeOption ? sizeOption.price : 0;
   };
 
   const getExtrasPrice = () => order.selectedExtras.length * 5;
@@ -150,18 +160,19 @@ function OrderPizza({ goBack, onSuccess }) {
               <Label className="size-header">
                 <h3 className="required">Boyut Seç</h3>
               </Label>
-              <div className="pizza-size-selection">
-                <input type="radio" id="Küçük" name="size" value="Küçük" onChange={handleSizeChange} checked={selectedSize === 'Küçük'} />
-                <label htmlFor="Küçük">Küçük</label>
-              </div>
-              <div className="pizza-size-selection">
-                <input type="radio" id="Orta" name="size" value="Orta" onChange={handleSizeChange} checked={selectedSize === 'Orta'} />
-                <label htmlFor="Orta">Orta</label>
-              </div>
-              <div className="pizza-size-selection">
-                <input type="radio" id="Büyük" name="size" value="Büyük" onChange={handleSizeChange} checked={selectedSize === 'Büyük'} />
-                <label htmlFor="Büyük">Büyük</label>
-              </div>
+              {sizeOptions.map(({ value, label }) => (
+                <div className="pizza-size-selection" key={value}>
+                  <input
+                    type="radio"
+                    id={value}
+                    name="size"
+                    value={value}
+                    onChange={handleSizeChange}
+                    checked={selectedSize === value}
+                  />
+                  <label htmlFor={value}>{label}</label>
+                </div>
+              ))}
             </div>
           </FormGroup>
 
@@ -169,9 +180,11 @@ function OrderPizza({ goBack, onSuccess }) {
             <h3 className="required">Hamur Seç</h3>
             <select value={selectedDough} onChange={handleDoughChange}>
               <option value="">Hamur Kalınlığı</option>
-              <option value="İnce">İnce</option>
-              <option value="Normal">Normal</option>
-              <option value="Kalın">Kalın</option>
+              {doughOptions.map(({ value, label }) => (
+                <option key={value} value={value}>
+                  {label}
+                </option>
+              ))}
             </select>
           </FormGroup>
 
