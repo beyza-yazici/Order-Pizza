@@ -1,7 +1,7 @@
 body {
   background-image: url("/images/iteration-1-images/home-banner.png");
   background-repeat: repeat-x;
-  background-size: 100% auto;
+  background-size: cover;
   background-position: top center;
   height: 100vh;
   width: 100%;
@@ -73,4 +73,27 @@ body {
 
 .icon-items{
   list-style-type: none;
+}
+
+.cards{
+  display: flex;
+}
+
+.lezzetus{
+  background-image: url("/images/iteration-2-images/cta/kart-1.png");
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+}
+.hack{
+  background-image: url("/images/iteration-2-images/cta/kart-2.png");
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
+}
+.kurye{
+  background-image: url("/images/iteration-2-images/cta/kart-3.png");
+  height: 100vh;
+  width: 100%;
+  background-repeat: no-repeat;
 }

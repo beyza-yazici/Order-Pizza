@@ -52,22 +52,30 @@ function OrderPizza({ goBack, onSuccess }) {
     switch (name) {
       case 'ad':
         if (value.length < 3) {
+          toast.error("İsim en az 3 karakter olmalıdır.");
           return "İsim en az 3 karakter olmalıdır.";
         }
         return '';
       case 'selectedSize':
         if (!value) {
+          toast.error("Lütfen bir boyut seçiniz.");
           return "Lütfen bir boyut seçiniz.";
         }
         return '';
       case 'selectedDough':
         if (!value) {
+          toast.error("Lütfen bir hamur kalınlığı seçiniz.");
           return "Lütfen bir hamur kalınlığı seçiniz.";
         }
         return '';
       case 'selectedExtras':
         if (value.length < 4) {
+          toast.error("En az 4 ekstra malzeme seçmelisiniz.");
           return "En az 4 ekstra malzeme seçmelisiniz.";
+        }
+        if (value.length > 10) {
+          toast.error("En fazla 10 ekstra malzeme seçebilirsiniz.");
+          return "En fazla 10 ekstra malzeme seçebilirsiniz.";
         }
         return '';
       default:
@@ -96,20 +104,6 @@ function OrderPizza({ goBack, onSuccess }) {
     }));
   };
 
-  const handleBlur = (event) => {
-    const { name, value } = event.target;
-
-    const errorMessage = validate(name, value);
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: errorMessage,
-    }));
-
-    if (errorMessage) {
-      toast.error(errorMessage);
-    }
-  };
 
   useEffect(() => {
     const sizePrice = getSizePrice();
@@ -117,6 +111,11 @@ function OrderPizza({ goBack, onSuccess }) {
     const updatedTotalPrice = (price + sizePrice + extrasPrice) * formData.count;
     setTotalPrice(updatedTotalPrice);
   }, [formData, price]);
+
+  const increment = () => setFormData(prev => ({ ...prev, count: prev.count + 1 }));
+  const decrement = () => { 
+    if (formData.count > 0) setFormData(prev => ({ ...prev, count: prev.count - 1 }));
+  };
 
   const getSizePrice = () => {
     const sizeOption = sizeOptions.find(option => option.value === formData.selectedSize);
@@ -134,6 +133,7 @@ function OrderPizza({ goBack, onSuccess }) {
       selectedDough: validate('selectedDough', formData.selectedDough),
       selectedExtras: validate('selectedExtras', formData.selectedExtras),
     };
+
 
     if (Object.values(finalErrors).some((error) => error)) {
       setErrors(finalErrors);
@@ -206,7 +206,6 @@ function OrderPizza({ goBack, onSuccess }) {
                 </div>
               ))}
             </div>
-            {errors.selectedSize && <div className="error-message">{errors.selectedSize}</div>}
           </FormGroup>
 
           <FormGroup className="dough-selection">
@@ -223,7 +222,6 @@ function OrderPizza({ goBack, onSuccess }) {
                 </option>
               ))}
             </select>
-            {errors.selectedDough && <div className="error-message">{errors.selectedDough}</div>}
           </FormGroup>
 
           <FormGroup className="extras">
@@ -245,7 +243,6 @@ function OrderPizza({ goBack, onSuccess }) {
                 </div>
               ))}
             </div>
-            {errors.selectedExtras && <div className="error-message">{errors.selectedExtras}</div>}
           </FormGroup>
 
           <FormGroup className="ad">
@@ -259,12 +256,10 @@ function OrderPizza({ goBack, onSuccess }) {
               name="ad"
               value={formData.ad}
               onChange={handleChange}
-              onBlur={handleBlur}
               minLength={3}
               required
               placeholder="Lütfen isminizi giriniz."
             />
-            {errors.ad && <div className="error-message">{errors.ad}</div>}
           </FormGroup>
 
           <FormGroup className="note">
@@ -280,12 +275,28 @@ function OrderPizza({ goBack, onSuccess }) {
             </label>
           </FormGroup>
 
-          <Button type="submit">Siparişi Gönder</Button>
-        </Form>
+          <hr />
+          <div className="count-order">
+            <FormGroup>
+              <div className="counter">
+                <Button onClick={decrement} className="decrement">-</Button>
+                <span className="count">{formData.count}</span>
+                <Button onClick={increment} className="increment">+</Button>
+              </div>
+            </FormGroup>
 
-        <div className="total-price">
-          <h3>Toplam Fiyat: {totalPrice}₺</h3>
-        </div>
+            <FormGroup className="order-details">
+              <h3>Sipariş Toplamı</h3>
+              <div className="extra-price">
+                <p>Seçimler:</p> <p>{getExtrasPrice()} ₺</p>
+              </div>
+              <div className="total-price">
+                <p>Toplam:</p><p> {totalPrice} ₺</p>
+              </div>
+              <Button type="submit">SİPARİŞ VER</Button>
+            </FormGroup>
+          </div>
+        </Form>
       </section>
 
       <ToastContainer />

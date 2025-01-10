@@ -311,6 +311,13 @@ Form {
     background-color: white;
   }
 
+  .error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+
   @media (max-width: 768px) {
     header {
         height: auto;
