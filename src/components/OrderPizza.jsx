@@ -256,11 +256,20 @@ function OrderPizza({ onSuccess }) {
               id="ad"
               name="ad"
               value={formData.ad}
-              onChange={handleChange}
+              onChange={(e) => setFormData({ ...formData, ad: e.target.value })}
+              onBlur={(e) => {
+                const errorMessage = validate('ad', e.target.value);
+                setErrors((prevErrors) => ({
+                  ...prevErrors,
+                  ad: errorMessage,
+                }));
+              }}
               minLength={3}
               required
               placeholder="Lütfen isminizi giriniz."
+              className={errors.ad ? "input-error" : ""}
             />
+            {errors.ad && <p className="error-message">{errors.ad}</p>}
           </FormGroup>
 
           <FormGroup className="note">
