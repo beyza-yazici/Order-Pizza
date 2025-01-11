@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { pizzaData } from '../sahteVeri';
 import { Button, Form, FormGroup, Label } from 'reactstrap';
 import "../css/OrderPizza.css";
-import "../../images/iteration-1-images/logo.svg";
-import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-function OrderPizza({ goBack, onSuccess }) {
+function OrderPizza({ onSuccess }) {
+
+  const history = useHistory();
 
   const initialFormState = {
     ad: '',
@@ -104,7 +106,6 @@ function OrderPizza({ goBack, onSuccess }) {
     }));
   };
 
-
   useEffect(() => {
     const sizePrice = getSizePrice();
     const extrasPrice = getExtrasPrice();
@@ -134,7 +135,6 @@ function OrderPizza({ goBack, onSuccess }) {
       selectedExtras: validate('selectedExtras', formData.selectedExtras),
     };
 
-
     if (Object.values(finalErrors).some((error) => error)) {
       setErrors(finalErrors);
       return;
@@ -155,6 +155,7 @@ function OrderPizza({ goBack, onSuccess }) {
         setFormData(initialFormState);
         onSuccess(orderData);
         toast.success("Siparişiniz başarıyla alındı!");
+        history.push('/success');
       })
       .catch(error => {
         console.error('API isteği sırasında bir hata oluştu:', error);
@@ -167,9 +168,9 @@ function OrderPizza({ goBack, onSuccess }) {
       <header>
         <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
         <div className="order-header">
-          <button onClick={goBack}>Anasayfa</button>
-          <button>Seçenekler</button>
-          <button>Sipariş Oluştur</button>
+          <Button onClick={() => history.push('/')}>Anasayfa</Button>
+          <Button>Seçenekler</Button>
+          <Button>Sipariş Oluştur</Button>
         </div>
       </header>
 
@@ -291,15 +292,18 @@ function OrderPizza({ goBack, onSuccess }) {
                 <p>Seçimler:</p> <p>{getExtrasPrice()} ₺</p>
               </div>
               <div className="total-price">
-                <p>Toplam:</p><p> {totalPrice} ₺</p>
+                <p>Toplam Fiyat:</p>
+                <p>{totalPrice} ₺</p>
               </div>
-              <Button type="submit">SİPARİŞ VER</Button>
+            </FormGroup>
+
+            <FormGroup>
+              <Button type="submit" className="order-button">Sipariş Ver</Button>
             </FormGroup>
           </div>
         </Form>
+        <ToastContainer />
       </section>
-
-      <ToastContainer />
     </div>
   );
 }

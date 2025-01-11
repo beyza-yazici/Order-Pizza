@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import "../css/HomePage.css"
 import "../../images/iteration-2-images/icons/1.svg"
 import "../../images/iteration-2-images/icons/2.svg"
@@ -13,20 +14,22 @@ import "../../images/iteration-2-images/pictures/food-1.png"
 import "../../images/iteration-2-images/pictures/food-2.png"
 import "../../images/iteration-2-images/pictures/food-3.png"
 
-function HomePage({onButtonClick}) {
+function HomePage() {
   return (
     <>
-    <div className="home-h1">
-    <img src="../../images/iteration-1-images/logo.svg"/>
-    </div>
-    <div className='home-h2'>
-      <p>fırsatı kaçırma</p> 
-    <h2>KOD ACIKTIRIR</h2> 
-    <h2>PİZZA, DOYURUR</h2>
-    </div>
-    <div className='home-button'>
-      <button data-cy="home-button" onClick={onButtonClick}> ACIKTIM </button>
-    </div>
+      <div className="home-h1">
+        <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
+      </div>
+      <div className="home-h2">
+        <p>fırsatı kaçırma</p>
+        <h2>KOD ACIKTIRIR</h2>
+        <h2>PİZZA, DOYURUR</h2>
+      </div>
+      <div className="home-button">
+        <Link to="/order-pizza">
+          <button data-cy="home-button"> ACIKTIM </button>
+        </Link>
+      </div>
     <nav className='home-icons'>
       <ul className='icon-lists'>
         <li className='icon-items'>
@@ -59,16 +62,22 @@ function HomePage({onButtonClick}) {
       <div className='lezzetus'>
         <h1>Özel Lezzetus</h1>
         <p>Position: Absolute Acı Burger</p>
-        <button onClick={onButtonClick}>SİPARİŞ VER</button>
+        <Link to="/order-pizza">
+        <button>SİPARİŞ VER</button>
+        </Link>
       </div>
       <div className='two-cards'>
         <div className='hack'>
         <h2>Hackathlon Burger Menü</h2>
-        <button onClick={onButtonClick}>SİPARİŞ VER</button>
+        <Link to="/order-pizza">
+        <button>SİPARİŞ VER</button>
+        </Link>
         </div>
         <div className='kurye'>
         <h2>Çoooooook hızlı npm gibi kurye</h2>
-        <button onClick={onButtonClick}>SİPARİŞ VER</button>
+        <Link to="/order-pizza">
+        <button>SİPARİŞ VER</button>
+        </Link>
         </div>
       </div>
     </section>
