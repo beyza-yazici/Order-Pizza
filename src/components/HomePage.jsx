@@ -58,6 +58,7 @@ function HomePage() {
         </li>
       </ul>
     </nav>
+    <div className="home-cta">
     <section className='cards'>
       <div className='lezzetus'>
         <h1>Özel Lezzetus</h1>
@@ -89,7 +90,7 @@ function HomePage() {
       <ul className='mb-icon-lists'>
         <li className='mb-icon-items'>
           <img src="../../images/iteration-2-images/icons/1.svg"/>
-          <span>YENİ! Kore</span>
+          <span>Ramen</span>
         </li>
         <li className='mb-icon-items'>
           <img src="../../images/iteration-2-images/icons/2.svg"/>
@@ -114,15 +115,22 @@ function HomePage() {
       </ul>
     </nav>
     <div className='md-images'>
+    <div className="item">
     <img src="../../images/iteration-2-images/pictures/food-1.png"/>
-    <p>Terminal Pizza </p>
-    <p>4.9</p> <p>200</p> <p>120₺</p>
+    <h4>Terminal Pizza </h4>
+    <p><span>4.9</span><span>200</span><span>120₺</span></p>
+    </div>
+    <div className="item">
     <img src="../../images/iteration-2-images/pictures/food-2.png"/>
-    <p>Position Absolute Acı Pizza </p>
-    <p>4.9</p> <p>1000</p> <p>150₺</p>
+    <h4>Position Absolute Acı Pizza </h4>
+    <p><span>4.9</span><span>1000</span><span>150₺</span></p>
+    </div>
+    <div className="item">
     <img src="../../images/iteration-2-images/pictures/food-3.png"/>
-    <p>Terminal Pizza </p>
-    <p>4.9</p> <p>500</p> <p>130₺</p>
+    <h4>useEffect Tavuklu Burger </h4>
+    <p><span>4.9</span><span>500</span><span>130₺</span></p>
+    </div>
+    </div>
     </div>
     </>
   )
