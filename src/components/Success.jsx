@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom"; 
-import "../../images/iteration-1-images/logo.svg";
+import "/images/logo.svg";
 import "../css/Success.css";
 
 function SuccessPage({ orderDetails }) {
@@ -22,7 +22,7 @@ function SuccessPage({ orderDetails }) {
   return (
     <div className="success-page">
       <div className="logo">
-        <img src="../../images/iteration-1-images/logo.svg" alt="logo" />
+        <img src="/images/logo.svg" alt="logo" />
       </div>
       <div className="success-message">
         <p className="lezzet">Lezzetin Yolda!</p>

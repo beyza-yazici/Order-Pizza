@@ -1,18 +1,18 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom';
 import "../css/HomePage.css"
-import "../../images/iteration-2-images/icons/1.svg"
-import "../../images/iteration-2-images/icons/2.svg"
-import "../../images/iteration-2-images/icons/3.svg"
-import "../../images/iteration-2-images/icons/4.svg"
-import "../../images/iteration-2-images/icons/5.svg"
-import "../../images/iteration-2-images/icons/6.svg"
-import "../../images/iteration-2-images/cta/kart-1.png"
-import "../../images/iteration-2-images/cta/kart-2.png"
-import "../../images/iteration-2-images/cta/kart-3.png"
-import "../../images/iteration-2-images/pictures/food-1.png"
-import "../../images/iteration-2-images/pictures/food-2.png"
-import "../../images/iteration-2-images/pictures/food-3.png"
+import "/images/1.svg"
+import "/images/2.svg"
+import "/images/3.svg"
+import "/images/4.svg"
+import "/images/5.svg"
+import "/images/6.svg"
+import "/images/kart-1.png"
+import "/images/kart-2.png"
+import "/images/kart-3.png"
+import "/images/food-1.png"
+import "/images/food-2.png"
+import "/images/food-3.png"
 
 function HomePage() {
 
@@ -26,7 +26,7 @@ function HomePage() {
   return (
     <div className="home-page">
       <div className="home-h1">
-        <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
+        <img src="/images/logo.svg" alt="Logo" />
       </div>
       <div className="home-h2">
         <p>fırsatı kaçırma</p>
@@ -41,27 +41,27 @@ function HomePage() {
     <nav className='home-icons'>
       <ul className='icon-lists'>
         <li className='icon-items' onClick={handleScroll}> 
-          <img src="../../images/iteration-2-images/icons/1.svg"/>
+          <img src="/images/1.svg"/>
           <span>YENİ! Kore</span>
         </li>
         <li className='icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/2.svg"/>
+          <img src="/images/2.svg"/>
           <span>Pizza</span>
         </li>
         <li className='icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/3.svg"/>
+          <img src="/images/3.svg"/>
           <span>Burger</span>
         </li>
         <li className='icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/4.svg"/>
+          <img src="/images/4.svg"/>
           <span>Kızartmalar</span>
         </li>
         <li className='icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/5.svg"/>
+          <img src="/images/5.svg"/>
           <span>Fast Food</span>
         </li>
         <li className='icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/6.svg"/>
+          <img src="/images/6.svg"/>
           <span>Gazlı İçecek</span>
         </li>
       </ul>
@@ -97,44 +97,44 @@ function HomePage() {
     <nav className='mb-icons'>
       <ul className='mb-icon-lists'>
         <li className='mb-icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/1.svg"/>
+          <img src="/images/1.svg"/>
           <span>Ramen</span>
         </li>
         <li className='mb-icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/2.svg"/>
+          <img src="/images/2.svg"/>
           <span>Pizza</span>
         </li>
         <li className='mb-icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/3.svg"/>
+          <img src="/images/3.svg"/>
           <span>Burger</span>
         </li>
         <li className='mb-icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/4.svg"/>
+          <img src="/images/4.svg"/>
           <span>Kızartmalar</span>
         </li>
         <li className='mb-icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/5.svg"/>
+          <img src="/images/5.svg"/>
           <span>Fast Food</span>
         </li>
         <li className='mb-icon-items' onClick={handleScroll}>
-          <img src="../../images/iteration-2-images/icons/6.svg"/>
+          <img src="/images/6.svg"/>
           <span>Gazlı İçecek</span>
         </li>
       </ul>
     </nav>
     <div className='md-images' ref={mdImagesRef}>
     <div className="item">
-    <img src="../../images/iteration-2-images/pictures/food-1.png"/>
+    <img src="/images/food-1.png"/>
     <h4>Terminal Pizza </h4>
     <p><span>4.9</span><span>200</span><span>120₺</span></p>
     </div>
     <div className="item">
-    <img src="../../images/iteration-2-images/pictures/food-2.png"/>
+    <img src="/images/food-2.png"/>
     <h4>Position Absolute Acı Pizza </h4>
     <p><span>4.9</span><span>1000</span><span>150₺</span></p>
     </div>
     <div className="item">
-    <img src="../../images/iteration-2-images/pictures/food-3.png"/>
+    <img src="/images/food-3.png"/>
     <h4>useEffect Tavuklu Burger </h4>
     <p><span>4.9</span><span>500</span><span>130₺</span></p>
     </div>

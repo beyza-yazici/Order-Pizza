@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import "../../images/iteration-2-images/pictures/form-banner.png"
+import "/images/form-banner.png"
 
 function OrderPizza({ onSuccess }) {
 
@@ -167,8 +167,8 @@ function OrderPizza({ onSuccess }) {
   return (
     <div className='order-pizza'>
       <header>
-        <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
-        <img src="../../images/iteration-2-images/pictures/form-banner.png"/>
+        <img src="/images/logo.svg" alt="Logo" />
+        <img src="/images/form-banner.png"/>
         <div className="order-header">
           <Button onClick={() => history.push('/')}>Anasayfa</Button>
           <Button>Seçenekler</Button>
