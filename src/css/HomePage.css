@@ -1,9 +1,14 @@
+
 * {
   box-sizing: border-box;
 }
 
-body {
+.home-page{
   background-image: url("/images/iteration-1-images/home-banner.png");
+  background-repeat: no-repeat;}
+
+body {
+  background-color: #FAF7F2;
   background-repeat: repeat-x;
   background-size: cover;
   background-position: top center;
@@ -82,12 +87,12 @@ body {
   position: absolute;
   margin-top: 77vh;
   width: 100%;
-  
+  background-color: white;
 }
 
 .icon-lists {
   display: flex;
-  gap: 100px;
+  gap: 70px;
   list-style-type: none;
   padding: 0;
 }
@@ -96,6 +101,7 @@ body {
   display: flex;
   flex-direction: row;
   align-items: center;
+  cursor: pointer;
 }
 
 .icon-items img {
@@ -253,19 +259,26 @@ button:hover {
   border-radius: 30px;
   width: 140px;
   height: 60px;
+  cursor: pointer;
   
 }
 
+.mb-icon-items span {
+  padding: 10px;
+}
 
 .md-images {
   display: flex;                
   justify-content: center;      
   align-items: flex-start;      
-  gap: 120px;                   
+  gap: 120px;
+  height: auto;                   
   width: 100%;                  
   flex-wrap: wrap;              
   margin-top: 20vh;             
   text-align: center;
+  background-color: #FAF7F2;
+  padding: 10px 0;
 }
 
 .md-images .item {         
@@ -306,4 +319,324 @@ button:hover {
 
 .md-images .item p span {
   margin-right: 10px;          
+}
+
+
+@media (max-width: 768px) {
+  
+  body {
+    background-size: contain;
+  }
+  
+  
+  .home-h1 img {
+    margin: 30px 15px;
+    max-width: 80%;
+  }
+  
+  .home-h2 {
+    font-size: 24px;
+    padding: 0 15px;
+  }
+  
+  .home-h2 h2 {
+    font-size: 24px;
+  }
+  
+  .home-h2 p {
+    font-size: 22px;
+  }
+  
+
+  .home-button {
+    flex-wrap: wrap;
+  }
+  
+  .home-button button {
+    width: 110px;
+    font-size: 11px;
+    padding: 8px 15px;
+  }
+  
+  
+  .home-icons {
+    margin-top: 65vh;
+    padding: 10px 0;
+  }
+  
+  .icon-lists {
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .icon-items {
+    width: 45%;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  
+  .icon-items img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .icon-items span {
+    font-size: 12px;
+    padding-left: 10px;
+  }
+  
+  
+  .home-cta {
+    top: -50px;
+  }
+  
+  .cards {
+    flex-direction: column;
+    height: auto;
+    padding: 50px 15px;
+    gap: 15px;
+  }
+  
+  .lezzetus {
+    min-width: auto;
+    width: 90%;
+    height: 300px;
+  }
+  
+  .two-cards {
+    width: 90%;
+    margin-left: 0;
+  }
+  
+  .hack, .kurye {
+    height: 150px;
+    padding: 15px;
+  }
+  
+  .hack h2, .kurye h2 {
+    font-size: 20px;
+  }
+  
+  
+  .medium-body p:first-of-type {
+    font-size: 24px;
+  }
+  
+  .medium-body p:last-of-type {
+    font-size: 22px;
+    text-align: center;
+    padding: 0 15px;
+  }
+  
+  
+  .mb-icons {
+    position: relative;
+    padding-bottom: 30px;
+    margin-top: 20px;
+  }
+  
+  .mb-icon-lists {
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .mb-icon-items {
+    width: 120px;
+    height: 50px;
+    font-size: 12px;
+  }
+  
+ 
+  .md-images {
+    gap: 30px;
+    margin-top: 10vh;
+    padding: 15px;
+  }
+  
+  .md-images .item {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .md-images .item img {
+    width: 100%;
+  }
+  
+  .md-images .item h4 {
+    font-size: 14px;
+    gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .md-images .item p {
+    font-size: 12px;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+ 
+  .terminal-pizza-container {
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .pizza-menu-items {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .pizza-menu-item {
+    padding: 6px 12px;
+    margin: 5px;
+    font-size: 12px;
+  }
+  
+  .pizza-menu-item img {
+    width: 25px;
+    height: 25px;
+    margin-right: 6px;
+  }
+  
+  .pizza-background {
+    max-width: 250px;
+    margin: 15px auto;
+  }
+  
+  .menu-title {
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  .menu-subtitle {
+    font-size: 16px;
+    text-align: center;
+  }
+  
+  .special-menu-items {
+    flex-direction: column;
+  }
+  
+  .special-menu-item {
+    padding: 8px 10px;
+    font-size: 12px;
+    justify-content: center;
+  }
+  
+  
+  .home-page {
+    background-position: top center;
+    background-size: contain;
+  }
+  
+  
+  button {
+    padding: 8px 15px;
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .home-h1 img {
+    margin: 20px 10px;
+    max-width: 70%;
+  }
+  
+  .home-h2 h2 {
+    font-size: 20px;
+  }
+  
+  .home-h2 p {
+    font-size: 18px;
+  }
+  
+  .home-icons {
+    margin-top: 55vh;
+  }
+  
+  .icon-items {
+    width: 100%;
+  }
+  
+  .lezzetus, .hack, .kurye {
+    height: auto;
+    min-height: 150px;
+    padding: 15px 10px;
+  }
+  
+  .hack h2, .kurye h2 {
+    font-size: 18px;
+  }
+  
+  .mb-icon-items {
+    width: 100px;
+    height: 45px;
+    font-size: 11px;
+  }
+  
+  .md-images .item {
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .pizza-menu-item {
+    padding: 4px 8px;
+    margin: 3px;
+    font-size: 10px;
+  }
+  
+  .pizza-menu-item img {
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+  }
+  
+  .pizza-background {
+    max-width: 200px;
+  }
+  
+  .menu-title {
+    font-size: 18px;
+  }
+  
+  .menu-subtitle {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .home-icons {
+    margin-top: 90vh;
+  }
+  
+  .home-h1 img {
+    margin: 10px;
+  }
+  
+  .home-h2 {
+    margin-top: -20px;
+  }
+  
+  .cards {
+    padding-top: 30px;
+  }
+  
+  .lezzetus {
+    height: 250px;
+  }
+  
+  .hack, .kurye {
+    height: 120px;
+  }
+  
+  .md-images {
+    margin-top: 5vh;
+  }
 }

@@ -147,7 +147,7 @@ function OrderPizza({ onSuccess }) {
       dough: formData.selectedDough,
       extras: formData.selectedExtras,
       count: formData.count,
-      price: price + getExtrasPrice() + getSizePrice(),
+      price: totalPrice,
     };
 
     axios.post('https://reqres.in/api/pizza', orderData)
@@ -165,7 +165,7 @@ function OrderPizza({ onSuccess }) {
   };
 
   return (
-    <div>
+    <div className='order-pizza'>
       <header>
         <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
         <img src="../../images/iteration-2-images/pictures/form-banner.png"/>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Link } from 'react-router-dom';
 import "../css/HomePage.css"
 import "../../images/iteration-2-images/icons/1.svg"
@@ -15,8 +15,16 @@ import "../../images/iteration-2-images/pictures/food-2.png"
 import "../../images/iteration-2-images/pictures/food-3.png"
 
 function HomePage() {
+
+  const mdImagesRef = useRef(null);
+
+  const handleScroll = () => {
+    if (mdImagesRef.current) {
+      mdImagesRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
   return (
-    <>
+    <div className="home-page">
       <div className="home-h1">
         <img src="../../images/iteration-1-images/logo.svg" alt="Logo" />
       </div>
@@ -32,27 +40,27 @@ function HomePage() {
       </div>
     <nav className='home-icons'>
       <ul className='icon-lists'>
-        <li className='icon-items'>
+        <li className='icon-items' onClick={handleScroll}> 
           <img src="../../images/iteration-2-images/icons/1.svg"/>
           <span>YENİ! Kore</span>
         </li>
-        <li className='icon-items'>
+        <li className='icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/2.svg"/>
           <span>Pizza</span>
         </li>
-        <li className='icon-items'>
+        <li className='icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/3.svg"/>
           <span>Burger</span>
         </li>
-        <li className='icon-items'>
+        <li className='icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/4.svg"/>
           <span>Kızartmalar</span>
         </li>
-        <li className='icon-items'>
+        <li className='icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/5.svg"/>
           <span>Fast Food</span>
         </li>
-        <li className='icon-items'>
+        <li className='icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/6.svg"/>
           <span>Gazlı İçecek</span>
         </li>
@@ -88,33 +96,33 @@ function HomePage() {
     </div>
     <nav className='mb-icons'>
       <ul className='mb-icon-lists'>
-        <li className='mb-icon-items'>
+        <li className='mb-icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/1.svg"/>
           <span>Ramen</span>
         </li>
-        <li className='mb-icon-items'>
+        <li className='mb-icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/2.svg"/>
           <span>Pizza</span>
         </li>
-        <li className='mb-icon-items'>
+        <li className='mb-icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/3.svg"/>
           <span>Burger</span>
         </li>
-        <li className='mb-icon-items'>
+        <li className='mb-icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/4.svg"/>
           <span>Kızartmalar</span>
         </li>
-        <li className='mb-icon-items'>
+        <li className='mb-icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/5.svg"/>
           <span>Fast Food</span>
         </li>
-        <li className='mb-icon-items'>
+        <li className='mb-icon-items' onClick={handleScroll}>
           <img src="../../images/iteration-2-images/icons/6.svg"/>
           <span>Gazlı İçecek</span>
         </li>
       </ul>
     </nav>
-    <div className='md-images'>
+    <div className='md-images' ref={mdImagesRef}>
     <div className="item">
     <img src="../../images/iteration-2-images/pictures/food-1.png"/>
     <h4>Terminal Pizza </h4>
@@ -132,7 +140,7 @@ function HomePage() {
     </div>
     </div>
     </div>
-    </>
+    </div>
   )
 }
 

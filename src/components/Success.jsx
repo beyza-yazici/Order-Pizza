@@ -6,8 +6,18 @@ import "../css/Success.css";
 function SuccessPage({ orderDetails }) {
   const history = useHistory(); 
 
-  const getExtrasPrice = () => orderDetails.extras.length * 5;
-  const getTotalPrice = () => orderDetails.price + getExtrasPrice();
+  if (!orderDetails) {
+    history.push('/');
+    return null;
+  }
+
+  const getExtrasPrice = () => {
+    return orderDetails.extras ? orderDetails.extras.length * 5 : 0;
+  };
+  
+  const getTotalPrice = () => {
+    return orderDetails.price;
+  };
 
   return (
     <div className="success-page">

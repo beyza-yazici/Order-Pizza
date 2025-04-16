@@ -95,3 +95,213 @@ h5{
     align-items: center;
     justify-content: space-between;
 }
+
+
+@media (max-width: 768px) {
+    .success-page {
+      gap: 3vh;
+      padding: 0 15px;
+      height: auto;
+      min-height: 100vh;
+    }
+    
+    .success-page img {
+      margin: 20px 0 0 0;
+      max-width: 150px;
+    }
+    
+    .success-message {
+      width: 100%;
+    }
+    
+    .onay {
+      font-size: 40px;
+      letter-spacing: -0.20rem;
+      text-align: center;
+    }
+    
+    .lezzet {
+      font-size: 24px;
+      text-align: center;
+    }
+    
+    hr {
+      width: 100%;
+      margin: 10px 0;
+    }
+    
+    .order-sum {
+      width: 100%;
+      margin: 0;
+      padding: 0 10px;
+    }
+    
+    h4 {
+      font-size: 16px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .order-selection {
+      width: 100%;
+      padding-left: 0;
+      align-items: center;
+    }
+    
+    .order-selection p {
+      text-align: center;
+      margin: 5px 0;
+      width: 100%;
+    }
+    
+    h5 {
+      font-size: 18px;
+      text-align: center;
+      margin: 10px 0;
+    }
+    
+    .order-sum-card {
+      padding: 10px 15px;
+      width: 90%;
+      margin: 0 auto;
+    }
+    
+    .order-sum-card p {
+      font-size: 14px;
+    }
+    
+    .back-home-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 14px;
+      width: 150px;
+    }
+  }
+  
+  
+  @media (max-width: 480px) {
+    .success-page {
+      gap: 2vh;
+    }
+    
+    .success-page img {
+      margin: 15px 0 0 0;
+      max-width: 120px;
+    }
+    
+    .onay {
+      font-size: 32px;
+      letter-spacing: -0.15rem;
+    }
+    
+    .lezzet {
+      font-size: 20px;
+    }
+    
+    h4 {
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    
+    .order-selection p {
+      font-size: 14px;
+    }
+    
+    h5 {
+      font-size: 16px;
+    }
+    
+    .order-sum-card {
+      padding: 8px 12px;
+      width: 95%;
+    }
+    
+    .order-sum-card p {
+      font-size: 12px;
+    }
+    
+    .back-home-button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      font-size: 12px;
+      width: 130px;
+    }
+  }
+  
+  
+  @media (max-height: 500px) and (orientation: landscape) {
+    .success-page {
+      padding: 10px;
+      gap: 1vh;
+    }
+    
+    .success-page img {
+      margin: 10px 0 0 0;
+      max-width: 100px;
+    }
+    
+    .onay {
+      font-size: 30px;
+      margin: 5px 0;
+    }
+    
+    .lezzet {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    
+    hr {
+      margin: 5px 0;
+    }
+    
+    .order-sum {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+    
+    h4 {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .order-selection {
+      width: 45%;
+      margin-right: 5%;
+    }
+    
+    .order-sum-card {
+      width: 45%;
+    }
+    
+    .back-home-button {
+      margin-top: 10px;
+    }
+  }
+  
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .success-page {
+      gap: 4vh;
+    }
+    
+    .success-page img {
+      max-width: 180px;
+    }
+    
+    .onay {
+      font-size: 50px;
+    }
+    
+    .lezzet {
+      font-size: 28px;
+    }
+    
+    .order-sum {
+      width: 80%;
+    }
+    
+    .order-sum-card {
+      width: 80%;
+    }
+  }
